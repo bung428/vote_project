@@ -1,0 +1,207 @@
+[
+    {
+      "id": "question1",
+      "content": "가장 끊기 힘든 놈은???",
+      "options": [
+        {
+          "id": "option1",
+          "content": "탄산음료",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 10,
+          "genderCnt": {
+            "male": 3,
+            "female": 7
+          }
+        },
+        {
+          "id": "option2",
+          "content": "커피",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 40,
+          "genderCnt": {
+            "male": 18,
+            "female": 22
+          }
+        },
+        {
+          "id": "option3",
+          "content": "술",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 40,
+          "genderCnt": {
+            "male": 22,
+            "female": 18
+          }
+        },
+        {
+          "id": "option4",
+          "content": "담배",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 30,
+          "genderCnt": {
+            "male": 19,
+            "female": 11
+          }
+        }
+      ],
+      "answerCnt": 120,
+      "likeCnt": 78,
+      "commentCnt": 12,
+      "hasLiked": true,
+      "answerOptionId": "option3"
+    },
+    {
+      "id": "question2",
+      "content": "세기의 대결🤦‍♂️",
+      "options": [
+        {
+          "id": "option5",
+          "content": "현재 차은우",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 73,
+          "genderCnt": {
+            "male": 21,
+            "female": 52
+          }
+        },
+        {
+          "id": "option6",
+          "content": "차은우 나이 때 강동원",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 50,
+          "genderCnt": {
+            "male": 8,
+            "female": 42
+          }
+        }
+      ],
+      "answerCnt": 123,
+      "likeCnt": 62,
+      "commentCnt": 20,
+      "hasLiked": false,
+      "answerOptionId": "option5"
+    },
+    {
+      "id": "question3",
+      "content": "영화관 의자 팔걸이, 어느 쪽이 내 것일까?",
+      "options": [
+        {
+          "id": "option7",
+          "content": "오른쪽",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 38,
+          "genderCnt": {
+            "male": 23,
+            "female": 15
+          }
+        },
+        {
+          "id": "option8",
+          "content": "왼쪽",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 14,
+          "genderCnt": {
+            "male": 4,
+            "female": 10
+          }
+        }
+      ],
+      "answerCnt": 52,
+      "likeCnt": 7,
+      "commentCnt": 3,
+      "hasLiked": false,
+      "answerOptionId": "option7"
+    },
+    {
+      "id": "question4",
+      "content": "다음 중, 제일 진상인 조수석 친구는?",
+      "options": [
+        {
+          "id": "option9",
+          "content": "대시보드에 냄새나는 발 올리는 은지",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 22,
+          "genderCnt": {
+            "male": 12,
+            "female": 10
+          }
+        },
+        {
+          "id": "option10",
+          "content": "옆에서 쿠크다스 다 흘리며 먹는 준호",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 73,
+          "genderCnt": {
+            "male": 39,
+            "female": 34
+          }
+        },
+        {
+          "id": "option11",
+          "content": "조수석에서 담배 피는 수진이",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 87,
+          "genderCnt": {
+            "male": 52,
+            "female": 35
+          }
+        },
+        {
+          "id": "option12",
+          "content": "내릴 때마다 풀파워로 문짝 닫는 재훈이",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 28,
+          "genderCnt": {
+            "male": 12,
+            "female": 16
+          }
+        }
+      ],
+      "answerCnt": 210,
+      "likeCnt": 100,
+      "commentCnt": 52,
+      "hasLiked": true,
+      "answerOptionId": "option11"
+    },
+    {
+      "id": "question5",
+      "content": "내가 선호하는 이성과 나이차는?",
+      "options": [
+        {
+          "id": "option13",
+          "content": "연하",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 71,
+          "genderCnt": {
+            "male": 45,
+            "female": 26
+          }
+        },
+        {
+          "id": "option14",
+          "content": "동갑",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 62,
+          "genderCnt": {
+            "male": 30,
+            "female": 32
+          }
+        },
+        {
+          "id": "option15",
+          "content": "연상",
+          "image": "https://play-lh.googleusercontent.com/2lkeoOpCjQhBaYam0RbwT1oLpOBGiFNE9gPnc7Mbi1rqi6oGAwG5qVkjebskBmat_Q=s94-rw",
+          "answerCnt": 78,
+          "genderCnt": {
+            "male": 28,
+            "female": 50
+          }
+        }  
+      ],
+      "answerCnt": 201,
+      "likeCnt": 60,
+      "commentCnt": 32,
+      "hasLiked": false,
+      "answerOptionId": "option14"
+    }
+  ]
