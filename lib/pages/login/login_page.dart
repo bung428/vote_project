@@ -38,7 +38,7 @@ class LoginPage extends RiverProvider<LoginNotifier, LoginViewModel> {
                 child: TextField(
                   controller: notifier.idController,
                   textAlignVertical: TextAlignVertical.center,
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     hintText: '아이디',

@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod_koo/river_pod/river_repository.dart';
 import 'package:vote_project/domain/repository/user_repository.dart';
-import 'package:vote_project/enums/gender.dart';
 import 'package:vote_project/models/api/user_model.dart';
 import 'package:vote_project/service/auth_service.dart';
 import 'package:vote_project/service/firestore_service.dart';

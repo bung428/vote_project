@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vote_project/route/routes.dart';
-import 'package:vote_project/service/app_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -26,10 +25,13 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Text('Splash')
+          child: Image.asset(
+            'assets/images/logo.png',
+            fit: BoxFit.contain,
+          )
         ),
       ),
     );

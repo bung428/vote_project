@@ -9,4 +9,8 @@ class GetVoteDetailUseCase {
   Future<VoteModel?> call(String id) async {
     return await repository.getVoteById(id);
   }
+
+  Future<bool> updateOption(String voteId, int optionId) async {
+    return await repository.updateOption(voteId, optionId);
+  }
 }

@@ -1,15 +1,19 @@
 import 'dart:math';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_koo/edge_insets.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_provider.dart';
+import 'package:go_router/go_router.dart';
 import 'package:vote_project/data/votes_repository_impl.dart';
 import 'package:vote_project/domain/repository/votes_repository.dart';
 import 'package:vote_project/domain/use_case/get_vote_detail_use_case.dart';
+import 'package:vote_project/enums/gender.dart';
 import 'package:vote_project/models/ui/vote_detail_data_model.dart';
 import 'package:vote_project/pages/detail/vote_detail_notifier.dart';
+import 'package:vote_project/route/routes.dart';
+import 'package:vote_project/service/app_service.dart';
+import 'package:vote_project/service/auth_service.dart';
 import 'package:vote_project/widgets/detail/table_title_widget.dart';
 import 'package:vote_project/widgets/gradient_linear_progress_indicator.dart';
 import 'package:vote_project/widgets/vote_option_list_widget.dart';
@@ -38,18 +42,33 @@ class VoteDetailPage extends RiverProvider<VoteDetailNotifier, VoteDetailDataMod
             children: [
               Padding(
                 padding: const EdgeInsetsApp(horizontal: 16, vertical: 12),
-                child: Text(provider.title ?? ''),
+                child: Text(provider.title),
               ),
               const Divider(thickness: 1,),
               const SizedBox(height: 12,),
               Padding(
                 padding: const EdgeInsetsApp(horizontal: 16, top: 12, bottom: 4),
-                child: VoteOptionListWidget(provider.options, provider.answerOptionId, isDetail: true),
+                child: VoteOptionListWidget(
+                  provider.options,
+                  provider.answerOptionId,
+                  optionCallback: (_) async {
+                    if (!AppService.instance.isLogin) {
+                      final result = await context.push(Routes.login.name);
+                      if (result == true) {
+                        notifier.selectOptionById(_);
+                      }
+                    } else {
+                      notifier.selectOptionById(_);
+                    }
+                  },
+                  isDetail: true
+                ),
               ),
               Padding(
                 padding: const EdgeInsetsApp(horizontal: 16, vertical: 12),
                 child: Text('${provider.answerCnt} 참여'),
               ),
+              /// Gender Rate Widget
               Padding(
                 padding: const EdgeInsetsApp(horizontal: 16, vertical: 12),
                 child: Table(
@@ -72,8 +91,15 @@ class VoteDetailPage extends RiverProvider<VoteDetailNotifier, VoteDetailDataMod
                     ...provider.voteGenderRates.map((e) => TableRow(
                       children: [
                         TableTitleWidget(image: e.image, content: e.content),
-                        _buildMaleRate(theme, e.id == provider.answerOptionId, e.malePercent),
-                        _buildFemaleRate(theme, e.id == provider.answerOptionId, e.femalePercent),
+                        ...Gender.values.map((value) {
+                          final isUser = AuthService.instance.user.value?.gender;
+                          return _buildGenderRate(
+                            theme,
+                            e.id == provider.answerOptionId && isUser == value,
+                            value.getPercent(e),
+                            value.color,
+                          );
+                        }),
                       ]
                     ))
                   ],
@@ -96,19 +122,24 @@ class VoteDetailPage extends RiverProvider<VoteDetailNotifier, VoteDetailDataMod
     );
   }
 
-  Container _buildMaleRate(ThemeData theme, bool isVoted, int value) => Container(
+  Container _buildGenderRate(
+    ThemeData theme,
+    bool isVoted,
+    int value,
+    Color color
+  ) => Container(
     height: 52,
     margin: const EdgeInsetsApp(all: 6),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(8),
-      border: isVoted ? Border.all(color: theme.colorScheme.onSurface) : null,
+      border: isVoted ? Border.all(color: Colors.black) : null,
       gradient: isVoted ? LinearGradient(
         colors: [
-          theme.colorScheme.primary.withOpacity(0.3),
-          theme.colorScheme.primary
+          color.withOpacity(0.3),
+          color
         ],
       ) : null,
-      color: theme.colorScheme.primary.withOpacity(0.1),
+      color: color.withOpacity(0.1),
     ),
     alignment: Alignment.centerRight,
     child: Stack(
@@ -117,7 +148,7 @@ class VoteDetailPage extends RiverProvider<VoteDetailNotifier, VoteDetailDataMod
           child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: GradientLinearProgressIndicator(
-                color: theme.colorScheme.primary,
+                color: color,
                 value: value / 100,
               )
           ),
@@ -128,43 +159,6 @@ class VoteDetailPage extends RiverProvider<VoteDetailNotifier, VoteDetailDataMod
             height: 52,
             alignment: Alignment.center,
             child: Text('$value%'))
-        ),
-      ],
-    ),
-  );
-
-  Container _buildFemaleRate(ThemeData theme, bool isVoted, int value) => Container(
-    height: 52,
-    margin: const EdgeInsetsApp(all: 6),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
-      border: isVoted ? Border.all(color: theme.colorScheme.onSurface) : null,
-      gradient: isVoted ? LinearGradient(
-        colors: [
-          theme.colorScheme.error.withOpacity(0.3),
-          theme.colorScheme.error
-        ],
-      ) : null,
-      color: theme.colorScheme.error.withOpacity(0.1),
-    ),
-    alignment: Alignment.centerRight,
-    child: Stack(
-      children: [
-        Positioned.fill(
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: GradientLinearProgressIndicator(
-                color: theme.colorScheme.error,
-                value: value / 100,
-              )
-          ),
-        ),
-        Positioned(
-          right: 12,
-          child: Container(
-              height: 52,
-              alignment: Alignment.center,
-              child: Text('$value%'))
         ),
       ],
     ),

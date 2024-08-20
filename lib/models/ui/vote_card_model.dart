@@ -6,7 +6,8 @@ class VoteCardModel {
   final int? answerOptionId;
   final String content;
   final List<VoteOptionModel> options;
-  final VoteCardFooterModel cardFooter;
+  final bool canDelete;
+  VoteCardFooterModel cardFooter;
 
   VoteCardModel({
     this.answerOptionId,
@@ -14,5 +15,6 @@ class VoteCardModel {
     required this.content,
     required this.options,
     required this.cardFooter,
+    required this.canDelete,
   });
 }

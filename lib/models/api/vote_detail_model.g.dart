@@ -6,15 +6,14 @@ part of 'vote_detail_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VoteDetailModelImpl _$$VoteDetailModelImplFromJson(
-        Map<String, dynamic> json) =>
+_$VoteDetailModelImpl _$$VoteDetailModelImplFromJson(Map json) =>
     _$VoteDetailModelImpl(
       id: (json['id'] as num).toInt(),
       content: json['content'] as String,
       image: json['image'] as String,
       answerCnt: (json['answerCnt'] as num).toInt(),
-      genderCnt:
-          GenderCountModel.fromJson(json['genderCnt'] as Map<String, dynamic>),
+      genderCnt: GenderCountModel.fromJson(
+          Map<String, dynamic>.from(json['genderCnt'] as Map)),
     );
 
 Map<String, dynamic> _$$VoteDetailModelImplToJson(
@@ -24,5 +23,5 @@ Map<String, dynamic> _$$VoteDetailModelImplToJson(
       'content': instance.content,
       'image': instance.image,
       'answerCnt': instance.answerCnt,
-      'genderCnt': instance.genderCnt,
+      'genderCnt': instance.genderCnt.toJson(),
     };

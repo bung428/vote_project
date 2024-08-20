@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vote_project/pages/add_vote/add_vote_page.dart';
+import 'package:vote_project/pages/comment/comment_page.dart';
 import 'package:vote_project/pages/detail/vote_detail_page.dart';
 import 'package:vote_project/pages/login/login_page.dart';
 import 'package:vote_project/pages/main/main_page.dart';
@@ -81,6 +83,34 @@ final appRouters = GoRouter(
                   )
           ),
         ),
+        GoRoute(
+          path: Routes.addVote.path,
+          name: Routes.addVote.name,
+          pageBuilder: (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: const AddVotePage(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+                  FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                    child: child,
+                  )
+          ),
+        ),
+        GoRoute(
+          path: Routes.comment.path,
+          name: Routes.comment.name,
+          pageBuilder: (context, state) => CustomTransitionPage(
+              key: state.pageKey,
+              child: CommentPage(
+                id: state.uri.queryParameters['id'] ?? '',
+              ),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+                  FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeInOutCirc).animate(animation),
+                    child: child,
+                  )
+          ),
+        ),
       ],
     ),
   ],
@@ -90,15 +120,14 @@ final appRouters = GoRouter(
     final homeLocation = state.namedLocation(Routes.main.name);
     final loginLocation = state.namedLocation(Routes.login.name);
     final splashLocation = state.namedLocation(Routes.splash.name);
-    final signUpLocation = state.namedLocation(Routes.signUp.name);
+    // final signUpLocation = state.namedLocation(Routes.signUp.name);
 
     final isLoggedIn = appService.isLogin;
 
     final isGoingToInit = state.matchedLocation == splashLocation;
-    final isGoingToSignUp = state.matchedLocation == signUpLocation;
+    // final isGoingToSignUp = state.matchedLocation == signUpLocation;
     final isGoingToLogin = state.matchedLocation == loginLocation;
 
-    print('KBG state.matchedLocation : ${state.matchedLocation}');
 
     if (isGoingToInit) {
       return splashLocation;

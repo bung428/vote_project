@@ -6,8 +6,7 @@ part of 'gender_count_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GenderCountModelImpl _$$GenderCountModelImplFromJson(
-        Map<String, dynamic> json) =>
+_$GenderCountModelImpl _$$GenderCountModelImplFromJson(Map json) =>
     _$GenderCountModelImpl(
       male: (json['male'] as num).toInt(),
       female: (json['female'] as num).toInt(),

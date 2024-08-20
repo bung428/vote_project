@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_notifier.dart';
 import 'package:flutter_riverpod_koo/stream_subscription.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vote_project/route/routes.dart';
 import 'package:vote_project/util/shared_preferences.dart';
 
@@ -81,11 +80,9 @@ class LoginNotifier extends RiverNotifier<LoginViewModel> with AppStreamSubscrip
     streamSubscription<bool>(
       stream: Stream.fromFuture(loginUseCase(id, pwd)),
       onData: (_) {
-        print('KBG _  : $_');
         state = state.copyWith(
           isLogin: _
         );
-        print('KBG state : ${state.isLogin} : ${state.enable}');
         if (state.isLogin) {
           context.go(Routes.main.name);
         }

@@ -6,7 +6,7 @@ part of 'vote_entry_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VoteEntryModelImpl _$$VoteEntryModelImplFromJson(Map<String, dynamic> json) =>
+_$VoteEntryModelImpl _$$VoteEntryModelImplFromJson(Map json) =>
     _$VoteEntryModelImpl(
       uid: json['uid'] as String,
       answerOptionId: (json['answerOptionId'] as num).toInt(),

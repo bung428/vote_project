@@ -10,7 +10,11 @@ class AuthService with ChangeNotifier {
 
   AuthService._();
 
-  final user = ValueNotifier<UserModel?>(null);
+  final user = ValueNotifier<UserModel?>(null)..addListener(updateUserState);
+
+  static void updateUserState() {
+    AppService.instance.isLogin = AuthService.instance.user.value != null;
+  }
 
   Future<void> init() async {
     final isAuto = await SharedPreferencesKey.isAutoLogin.get<bool>();

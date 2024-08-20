@@ -33,7 +33,7 @@ class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
                 child: TextField(
                   controller: notifier.idController,
                   textAlignVertical: TextAlignVertical.center,
-                  keyboardType: TextInputType.emailAddress,
+                  keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     hintText: '아이디',

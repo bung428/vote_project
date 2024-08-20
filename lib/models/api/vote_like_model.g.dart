@@ -6,7 +6,7 @@ part of 'vote_like_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$VoteLikeModelImpl _$$VoteLikeModelImplFromJson(Map<String, dynamic> json) =>
+_$VoteLikeModelImpl _$$VoteLikeModelImplFromJson(Map json) =>
     _$VoteLikeModelImpl(
       uid: json['uid'] as String,
       hasLiked: json['hasLiked'] as bool,

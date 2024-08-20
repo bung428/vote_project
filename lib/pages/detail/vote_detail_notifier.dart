@@ -13,11 +13,24 @@ class VoteDetailNotifier extends RiverNotifier<VoteDetailDataModel?>
 
   @override
   void onInit() {
+    _fetchVoteDetail();
+  }
+
+  void _fetchVoteDetail() {
     streamSubscription(
-      stream: Stream.fromFuture(voteDetailUseCase(ids.$1)),
-      onData: (_) {
-        state = _?.detailModel;
-      }
+        stream: Stream.fromFuture(voteDetailUseCase(ids.$1)),
+        onData: (_) {
+          state = _?.detailModel;
+        }
     );
+  }
+
+  void selectOptionById(int id) async {
+    final voteId = ids.$1;
+
+    final result = await voteDetailUseCase.updateOption(voteId, id);
+    if (result) {
+      _fetchVoteDetail();
+    }
   }
 }

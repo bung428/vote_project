@@ -21,6 +21,7 @@ VoteModel _$VoteModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VoteModel {
   String get id => throw _privateConstructorUsedError;
+  String get ownerUid => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   int get answerCnt => throw _privateConstructorUsedError;
   int get likeCnt => throw _privateConstructorUsedError;
@@ -28,6 +29,8 @@ mixin _$VoteModel {
   List<VoteLikeModel>? get voteLiked => throw _privateConstructorUsedError;
   List<VoteEntryModel>? get voteEntries => throw _privateConstructorUsedError;
   List<VoteDetailModel> get options => throw _privateConstructorUsedError;
+  @TimestampConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,13 +45,15 @@ abstract class $VoteModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
+      String ownerUid,
       String content,
       int answerCnt,
       int likeCnt,
       int commentCnt,
       List<VoteLikeModel>? voteLiked,
       List<VoteEntryModel>? voteEntries,
-      List<VoteDetailModel> options});
+      List<VoteDetailModel> options,
+      @TimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -65,6 +70,7 @@ class _$VoteModelCopyWithImpl<$Res, $Val extends VoteModel>
   @override
   $Res call({
     Object? id = null,
+    Object? ownerUid = null,
     Object? content = null,
     Object? answerCnt = null,
     Object? likeCnt = null,
@@ -72,11 +78,16 @@ class _$VoteModelCopyWithImpl<$Res, $Val extends VoteModel>
     Object? voteLiked = freezed,
     Object? voteEntries = freezed,
     Object? options = null,
+    Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownerUid: null == ownerUid
+          ? _value.ownerUid
+          : ownerUid // ignore: cast_nullable_to_non_nullable
               as String,
       content: null == content
           ? _value.content
@@ -106,6 +117,10 @@ class _$VoteModelCopyWithImpl<$Res, $Val extends VoteModel>
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
               as List<VoteDetailModel>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -120,13 +135,15 @@ abstract class _$$VoteModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
+      String ownerUid,
       String content,
       int answerCnt,
       int likeCnt,
       int commentCnt,
       List<VoteLikeModel>? voteLiked,
       List<VoteEntryModel>? voteEntries,
-      List<VoteDetailModel> options});
+      List<VoteDetailModel> options,
+      @TimestampConverter() DateTime createdAt});
 }
 
 /// @nodoc
@@ -141,6 +158,7 @@ class __$$VoteModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? ownerUid = null,
     Object? content = null,
     Object? answerCnt = null,
     Object? likeCnt = null,
@@ -148,11 +166,16 @@ class __$$VoteModelImplCopyWithImpl<$Res>
     Object? voteLiked = freezed,
     Object? voteEntries = freezed,
     Object? options = null,
+    Object? createdAt = null,
   }) {
     return _then(_$VoteModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      ownerUid: null == ownerUid
+          ? _value.ownerUid
+          : ownerUid // ignore: cast_nullable_to_non_nullable
               as String,
       content: null == content
           ? _value.content
@@ -182,6 +205,10 @@ class __$$VoteModelImplCopyWithImpl<$Res>
           ? _value._options
           : options // ignore: cast_nullable_to_non_nullable
               as List<VoteDetailModel>,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -191,13 +218,15 @@ class __$$VoteModelImplCopyWithImpl<$Res>
 class _$VoteModelImpl implements _VoteModel {
   _$VoteModelImpl(
       {required this.id,
+      required this.ownerUid,
       required this.content,
       required this.answerCnt,
       required this.likeCnt,
       required this.commentCnt,
       final List<VoteLikeModel>? voteLiked,
       final List<VoteEntryModel>? voteEntries,
-      required final List<VoteDetailModel> options})
+      required final List<VoteDetailModel> options,
+      @TimestampConverter() required this.createdAt})
       : _voteLiked = voteLiked,
         _voteEntries = voteEntries,
         _options = options;
@@ -207,6 +236,8 @@ class _$VoteModelImpl implements _VoteModel {
 
   @override
   final String id;
+  @override
+  final String ownerUid;
   @override
   final String content;
   @override
@@ -244,8 +275,12 @@ class _$VoteModelImpl implements _VoteModel {
   }
 
   @override
+  @TimestampConverter()
+  final DateTime createdAt;
+
+  @override
   String toString() {
-    return 'VoteModel(id: $id, content: $content, answerCnt: $answerCnt, likeCnt: $likeCnt, commentCnt: $commentCnt, voteLiked: $voteLiked, voteEntries: $voteEntries, options: $options)';
+    return 'VoteModel(id: $id, ownerUid: $ownerUid, content: $content, answerCnt: $answerCnt, likeCnt: $likeCnt, commentCnt: $commentCnt, voteLiked: $voteLiked, voteEntries: $voteEntries, options: $options, createdAt: $createdAt)';
   }
 
   @override
@@ -254,6 +289,8 @@ class _$VoteModelImpl implements _VoteModel {
         (other.runtimeType == runtimeType &&
             other is _$VoteModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.ownerUid, ownerUid) ||
+                other.ownerUid == ownerUid) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.answerCnt, answerCnt) ||
                 other.answerCnt == answerCnt) &&
@@ -264,7 +301,9 @@ class _$VoteModelImpl implements _VoteModel {
                 .equals(other._voteLiked, _voteLiked) &&
             const DeepCollectionEquality()
                 .equals(other._voteEntries, _voteEntries) &&
-            const DeepCollectionEquality().equals(other._options, _options));
+            const DeepCollectionEquality().equals(other._options, _options) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(ignore: true)
@@ -272,13 +311,15 @@ class _$VoteModelImpl implements _VoteModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      ownerUid,
       content,
       answerCnt,
       likeCnt,
       commentCnt,
       const DeepCollectionEquality().hash(_voteLiked),
       const DeepCollectionEquality().hash(_voteEntries),
-      const DeepCollectionEquality().hash(_options));
+      const DeepCollectionEquality().hash(_options),
+      createdAt);
 
   @JsonKey(ignore: true)
   @override
@@ -296,20 +337,25 @@ class _$VoteModelImpl implements _VoteModel {
 
 abstract class _VoteModel implements VoteModel {
   factory _VoteModel(
-      {required final String id,
-      required final String content,
-      required final int answerCnt,
-      required final int likeCnt,
-      required final int commentCnt,
-      final List<VoteLikeModel>? voteLiked,
-      final List<VoteEntryModel>? voteEntries,
-      required final List<VoteDetailModel> options}) = _$VoteModelImpl;
+          {required final String id,
+          required final String ownerUid,
+          required final String content,
+          required final int answerCnt,
+          required final int likeCnt,
+          required final int commentCnt,
+          final List<VoteLikeModel>? voteLiked,
+          final List<VoteEntryModel>? voteEntries,
+          required final List<VoteDetailModel> options,
+          @TimestampConverter() required final DateTime createdAt}) =
+      _$VoteModelImpl;
 
   factory _VoteModel.fromJson(Map<String, dynamic> json) =
       _$VoteModelImpl.fromJson;
 
   @override
   String get id;
+  @override
+  String get ownerUid;
   @override
   String get content;
   @override
@@ -324,6 +370,9 @@ abstract class _VoteModel implements VoteModel {
   List<VoteEntryModel>? get voteEntries;
   @override
   List<VoteDetailModel> get options;
+  @override
+  @TimestampConverter()
+  DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
   _$$VoteModelImplCopyWith<_$VoteModelImpl> get copyWith =>

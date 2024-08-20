@@ -1,9 +1,11 @@
 enum Routes {
-  main('main', '/'),
   splash('splash', '/splash'),
   signUp('signUp', '/signUp'),
   login('login', '/login'),
+  main('main', '/'),
   detail('detail', '/detail'),
+  comment('comment', '/comment'),
+  addVote('addVote', '/addVote'),
   ;
 
   final String path;
