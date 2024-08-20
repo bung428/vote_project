@@ -25,8 +25,8 @@ mixin _$VoteModel {
   int get answerCnt => throw _privateConstructorUsedError;
   int get likeCnt => throw _privateConstructorUsedError;
   int get commentCnt => throw _privateConstructorUsedError;
-  bool get hasLiked => throw _privateConstructorUsedError;
-  String get answerOptionId => throw _privateConstructorUsedError;
+  List<VoteLikeModel>? get voteLiked => throw _privateConstructorUsedError;
+  List<VoteEntryModel>? get voteEntries => throw _privateConstructorUsedError;
   List<VoteDetailModel> get options => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,8 +46,8 @@ abstract class $VoteModelCopyWith<$Res> {
       int answerCnt,
       int likeCnt,
       int commentCnt,
-      bool hasLiked,
-      String answerOptionId,
+      List<VoteLikeModel>? voteLiked,
+      List<VoteEntryModel>? voteEntries,
       List<VoteDetailModel> options});
 }
 
@@ -69,8 +69,8 @@ class _$VoteModelCopyWithImpl<$Res, $Val extends VoteModel>
     Object? answerCnt = null,
     Object? likeCnt = null,
     Object? commentCnt = null,
-    Object? hasLiked = null,
-    Object? answerOptionId = null,
+    Object? voteLiked = freezed,
+    Object? voteEntries = freezed,
     Object? options = null,
   }) {
     return _then(_value.copyWith(
@@ -94,14 +94,14 @@ class _$VoteModelCopyWithImpl<$Res, $Val extends VoteModel>
           ? _value.commentCnt
           : commentCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      hasLiked: null == hasLiked
-          ? _value.hasLiked
-          : hasLiked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      answerOptionId: null == answerOptionId
-          ? _value.answerOptionId
-          : answerOptionId // ignore: cast_nullable_to_non_nullable
-              as String,
+      voteLiked: freezed == voteLiked
+          ? _value.voteLiked
+          : voteLiked // ignore: cast_nullable_to_non_nullable
+              as List<VoteLikeModel>?,
+      voteEntries: freezed == voteEntries
+          ? _value.voteEntries
+          : voteEntries // ignore: cast_nullable_to_non_nullable
+              as List<VoteEntryModel>?,
       options: null == options
           ? _value.options
           : options // ignore: cast_nullable_to_non_nullable
@@ -124,8 +124,8 @@ abstract class _$$VoteModelImplCopyWith<$Res>
       int answerCnt,
       int likeCnt,
       int commentCnt,
-      bool hasLiked,
-      String answerOptionId,
+      List<VoteLikeModel>? voteLiked,
+      List<VoteEntryModel>? voteEntries,
       List<VoteDetailModel> options});
 }
 
@@ -145,8 +145,8 @@ class __$$VoteModelImplCopyWithImpl<$Res>
     Object? answerCnt = null,
     Object? likeCnt = null,
     Object? commentCnt = null,
-    Object? hasLiked = null,
-    Object? answerOptionId = null,
+    Object? voteLiked = freezed,
+    Object? voteEntries = freezed,
     Object? options = null,
   }) {
     return _then(_$VoteModelImpl(
@@ -170,14 +170,14 @@ class __$$VoteModelImplCopyWithImpl<$Res>
           ? _value.commentCnt
           : commentCnt // ignore: cast_nullable_to_non_nullable
               as int,
-      hasLiked: null == hasLiked
-          ? _value.hasLiked
-          : hasLiked // ignore: cast_nullable_to_non_nullable
-              as bool,
-      answerOptionId: null == answerOptionId
-          ? _value.answerOptionId
-          : answerOptionId // ignore: cast_nullable_to_non_nullable
-              as String,
+      voteLiked: freezed == voteLiked
+          ? _value._voteLiked
+          : voteLiked // ignore: cast_nullable_to_non_nullable
+              as List<VoteLikeModel>?,
+      voteEntries: freezed == voteEntries
+          ? _value._voteEntries
+          : voteEntries // ignore: cast_nullable_to_non_nullable
+              as List<VoteEntryModel>?,
       options: null == options
           ? _value._options
           : options // ignore: cast_nullable_to_non_nullable
@@ -195,10 +195,12 @@ class _$VoteModelImpl implements _VoteModel {
       required this.answerCnt,
       required this.likeCnt,
       required this.commentCnt,
-      required this.hasLiked,
-      required this.answerOptionId,
+      final List<VoteLikeModel>? voteLiked,
+      final List<VoteEntryModel>? voteEntries,
       required final List<VoteDetailModel> options})
-      : _options = options;
+      : _voteLiked = voteLiked,
+        _voteEntries = voteEntries,
+        _options = options;
 
   factory _$VoteModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$VoteModelImplFromJson(json);
@@ -213,10 +215,26 @@ class _$VoteModelImpl implements _VoteModel {
   final int likeCnt;
   @override
   final int commentCnt;
+  final List<VoteLikeModel>? _voteLiked;
   @override
-  final bool hasLiked;
+  List<VoteLikeModel>? get voteLiked {
+    final value = _voteLiked;
+    if (value == null) return null;
+    if (_voteLiked is EqualUnmodifiableListView) return _voteLiked;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<VoteEntryModel>? _voteEntries;
   @override
-  final String answerOptionId;
+  List<VoteEntryModel>? get voteEntries {
+    final value = _voteEntries;
+    if (value == null) return null;
+    if (_voteEntries is EqualUnmodifiableListView) return _voteEntries;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   final List<VoteDetailModel> _options;
   @override
   List<VoteDetailModel> get options {
@@ -227,7 +245,7 @@ class _$VoteModelImpl implements _VoteModel {
 
   @override
   String toString() {
-    return 'VoteModel(id: $id, content: $content, answerCnt: $answerCnt, likeCnt: $likeCnt, commentCnt: $commentCnt, hasLiked: $hasLiked, answerOptionId: $answerOptionId, options: $options)';
+    return 'VoteModel(id: $id, content: $content, answerCnt: $answerCnt, likeCnt: $likeCnt, commentCnt: $commentCnt, voteLiked: $voteLiked, voteEntries: $voteEntries, options: $options)';
   }
 
   @override
@@ -242,10 +260,10 @@ class _$VoteModelImpl implements _VoteModel {
             (identical(other.likeCnt, likeCnt) || other.likeCnt == likeCnt) &&
             (identical(other.commentCnt, commentCnt) ||
                 other.commentCnt == commentCnt) &&
-            (identical(other.hasLiked, hasLiked) ||
-                other.hasLiked == hasLiked) &&
-            (identical(other.answerOptionId, answerOptionId) ||
-                other.answerOptionId == answerOptionId) &&
+            const DeepCollectionEquality()
+                .equals(other._voteLiked, _voteLiked) &&
+            const DeepCollectionEquality()
+                .equals(other._voteEntries, _voteEntries) &&
             const DeepCollectionEquality().equals(other._options, _options));
   }
 
@@ -258,8 +276,8 @@ class _$VoteModelImpl implements _VoteModel {
       answerCnt,
       likeCnt,
       commentCnt,
-      hasLiked,
-      answerOptionId,
+      const DeepCollectionEquality().hash(_voteLiked),
+      const DeepCollectionEquality().hash(_voteEntries),
       const DeepCollectionEquality().hash(_options));
 
   @JsonKey(ignore: true)
@@ -283,8 +301,8 @@ abstract class _VoteModel implements VoteModel {
       required final int answerCnt,
       required final int likeCnt,
       required final int commentCnt,
-      required final bool hasLiked,
-      required final String answerOptionId,
+      final List<VoteLikeModel>? voteLiked,
+      final List<VoteEntryModel>? voteEntries,
       required final List<VoteDetailModel> options}) = _$VoteModelImpl;
 
   factory _VoteModel.fromJson(Map<String, dynamic> json) =
@@ -301,9 +319,9 @@ abstract class _VoteModel implements VoteModel {
   @override
   int get commentCnt;
   @override
-  bool get hasLiked;
+  List<VoteLikeModel>? get voteLiked;
   @override
-  String get answerOptionId;
+  List<VoteEntryModel>? get voteEntries;
   @override
   List<VoteDetailModel> get options;
   @override

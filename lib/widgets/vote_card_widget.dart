@@ -9,7 +9,7 @@ import 'package:vote_project/service/auth_service.dart';
 import 'package:vote_project/widgets/touch_well_widget.dart';
 import 'package:vote_project/widgets/vote_option_list_widget.dart';
 
-typedef DetailIdCallback = void Function(String id, String optionId);
+typedef DetailIdCallback = void Function(String id, int? optionId);
 typedef LikeCallback = void Function(bool value);
 
 class VoteCardWidget extends StatelessWidget {

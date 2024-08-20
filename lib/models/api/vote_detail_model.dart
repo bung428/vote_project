@@ -8,7 +8,7 @@ part 'vote_detail_model.g.dart';
 @freezed
 class VoteDetailModel with _$VoteDetailModel {
   factory VoteDetailModel({
-    required String id,
+    required int id,
     required String content,
     required String image,
     required int answerCnt,

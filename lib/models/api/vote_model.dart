@@ -1,10 +1,14 @@
+import 'package:collection/collection.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:vote_project/models/api/vote_detail_model.dart';
+import 'package:vote_project/models/api/vote_entry_model.dart';
+import 'package:vote_project/models/api/vote_like_model.dart';
 import 'package:vote_project/models/ui/vote_card_footer_model.dart';
 import 'package:vote_project/models/ui/vote_card_model.dart';
 import 'package:vote_project/models/ui/vote_detail_data_model.dart';
 import 'package:vote_project/models/ui/vote_gender_rate_model.dart';
 import 'package:vote_project/models/ui/vote_option_model.dart';
+import 'package:vote_project/service/auth_service.dart';
 
 
 part 'vote_model.freezed.dart';
@@ -18,8 +22,8 @@ class VoteModel with _$VoteModel {
     required int answerCnt,
     required int likeCnt,
     required int commentCnt,
-    required bool hasLiked,
-    required String answerOptionId,
+    List<VoteLikeModel>? voteLiked,
+    List<VoteEntryModel>? voteEntries,
     required List<VoteDetailModel> options
   }) = _VoteModel;
 
@@ -29,7 +33,10 @@ class VoteModel with _$VoteModel {
 extension VoteModelExt on VoteModel {
   VoteCardModel get cardModel => VoteCardModel(
       id: id,
-      answerOptionId: answerOptionId,
+      answerOptionId: voteEntries
+          ?.firstWhereOrNull(
+              (e) => e.uid == AuthService.instance.user.value?.uid)
+          ?.answerOptionId,
       content: content,
       options: options.map((e) => VoteOptionModel(
         id: e.id,
@@ -44,12 +51,17 @@ extension VoteModelExt on VoteModel {
       answerCnt: answerCnt,
       likeCnt: likeCnt,
       commentCnt: commentCnt,
-      hasLiked: hasLiked
-  );
+      hasLiked: voteLiked
+        ?.firstWhereOrNull(
+            (e) => e.uid == AuthService.instance.user.value?.uid)
+          ?.hasLiked ?? false);
 
   VoteDetailDataModel get detailModel => VoteDetailDataModel(
       title: content,
-      answerOptionId: answerOptionId,
+      answerOptionId: voteEntries
+              ?.firstWhereOrNull(
+                  (e) => e.uid == AuthService.instance.user.value?.uid)
+              ?.answerOptionId,
       options: options.map((e) => VoteOptionModel(
         id: e.id,
         image: e.image,

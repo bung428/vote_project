@@ -13,8 +13,12 @@ _$VoteModelImpl _$$VoteModelImplFromJson(Map<String, dynamic> json) =>
       answerCnt: (json['answerCnt'] as num).toInt(),
       likeCnt: (json['likeCnt'] as num).toInt(),
       commentCnt: (json['commentCnt'] as num).toInt(),
-      hasLiked: json['hasLiked'] as bool,
-      answerOptionId: json['answerOptionId'] as String,
+      voteLiked: (json['voteLiked'] as List<dynamic>?)
+          ?.map((e) => VoteLikeModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      voteEntries: (json['voteEntries'] as List<dynamic>?)
+          ?.map((e) => VoteEntryModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       options: (json['options'] as List<dynamic>)
           .map((e) => VoteDetailModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -27,7 +31,7 @@ Map<String, dynamic> _$$VoteModelImplToJson(_$VoteModelImpl instance) =>
       'answerCnt': instance.answerCnt,
       'likeCnt': instance.likeCnt,
       'commentCnt': instance.commentCnt,
-      'hasLiked': instance.hasLiked,
-      'answerOptionId': instance.answerOptionId,
+      'voteLiked': instance.voteLiked,
+      'voteEntries': instance.voteEntries,
       'options': instance.options,
     };

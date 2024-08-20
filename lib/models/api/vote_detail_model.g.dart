@@ -9,7 +9,7 @@ part of 'vote_detail_model.dart';
 _$VoteDetailModelImpl _$$VoteDetailModelImplFromJson(
         Map<String, dynamic> json) =>
     _$VoteDetailModelImpl(
-      id: json['id'] as String,
+      id: (json['id'] as num).toInt(),
       content: json['content'] as String,
       image: json['image'] as String,
       answerCnt: (json['answerCnt'] as num).toInt(),

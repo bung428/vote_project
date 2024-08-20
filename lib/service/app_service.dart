@@ -14,10 +14,10 @@ class AppService with ChangeNotifier {
     notifyListeners();
   }
 
-  void init() {
-    AuthService.instance.user.addListener(() {
-      debugPrint('AppService user listening : ${AuthService.instance.user.value}');
-      _isLogin = AuthService.instance.user.value != null;
-    });
-  }
+  // void init() {
+  //   AuthService.instance.user.addListener(() {
+  //     debugPrint('AppService user listening : ${AuthService.instance.user.value}');
+  //     _isLogin = AuthService.instance.user.value != null;
+  //   });
+  // }
 }

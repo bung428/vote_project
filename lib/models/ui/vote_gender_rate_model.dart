@@ -1,5 +1,5 @@
 class VoteGenderRateModel {
-  final String id;
+  final int? id;
   final String content;
   final String image;
   final int malePercent;

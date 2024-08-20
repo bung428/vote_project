@@ -17,7 +17,11 @@ class UserRepositoryImpl extends RiverRepository implements UserRepository {
           .where('id', isEqualTo: id)
           .get();
       if (query.docs.isEmpty) return false;
-      final userData = UserModel.fromJson(query.docs.first.data());
+      final data = {
+        'uid': query.docs.first.id,
+        ...query.docs.first.data()
+      };
+      final userData = UserModel.fromJson(data);
       if (userData.id == id && userData.pwd == pwd) {
         await AuthService.instance.signIn(userData);
         return true;

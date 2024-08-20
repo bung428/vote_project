@@ -3,10 +3,15 @@ import 'dart:ffi';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_notifier.dart';
+import 'package:vote_project/domain/use_case/get_sign_up_use_case.dart';
 import 'package:vote_project/enums/gender.dart';
+import 'package:vote_project/models/api/user_model.dart';
+import 'package:vote_project/service/firestore_service.dart';
 
 class SignUpNotifier extends RiverNotifier<bool> {
-  SignUpNotifier(super.state);
+  final GetSignUpUseCase signUpUseCase;
+
+  SignUpNotifier(super.state, this.signUpUseCase);
 
   final idController = TextEditingController();
   final pwdController = TextEditingController();
@@ -47,7 +52,6 @@ class SignUpNotifier extends RiverNotifier<bool> {
         pwdController.text.trim() == rePwdController.text.trim() &&
         gender != null
     ;
-    print('KBG state : $state');
   }
 
   void setGender(int index) {
@@ -59,5 +63,22 @@ class SignUpNotifier extends RiverNotifier<bool> {
       }
     }
     _updateEnable();
+  }
+
+  Future<void> signUp() async {
+    final docRef = FirestoreService.instance.collection(StoreCollection.user).doc();
+    final docId = docRef.id;
+
+    final selected = genderSelected.indexWhere((e) => e);
+    final gender = Gender.values.firstWhereOrNull((e) => e.index == selected);
+    if (gender == null) return;
+
+    final model = UserModel(
+        uid: docId,
+        id: idController.text,
+        pwd: pwdController.text,
+        gender: gender
+    );
+    await docRef.set(model.toJson());
   }
 }

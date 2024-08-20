@@ -1,12 +1,15 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_koo/edge_insets.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:vote_project/data/user_repository_impl.dart';
+import 'package:vote_project/domain/repository/user_repository.dart';
+import 'package:vote_project/domain/use_case/get_sign_up_use_case.dart';
 import 'package:vote_project/enums/gender.dart';
 import 'package:vote_project/main.dart';
 import 'package:vote_project/pages/sign_up/sign_up_notifier.dart';
+import 'package:vote_project/widgets/app_button_widget.dart';
 
 class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
   const SignUpPage({super.key});
@@ -127,6 +130,17 @@ class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
                           color: const Color(0xffA0A3BD)
                       ),
                     ))).toList(),
+              ),
+              const SizedBox(height: 24,),
+              AppButton(
+                onTap: provider ? () async {
+                  await notifier.signUp();
+                  if (!context.mounted) return;
+
+                  context.pop();
+                } : null,
+                style: theme.getBtnSubStyle,
+                child: const Text('회원가입'),
               )
             ],
           ),
@@ -137,8 +151,8 @@ class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
 
   @override
   SignUpNotifier createProvider(WidgetRef ref) {
-    // final match = SignURepositoryImpl().getRepoProvider(ref) as LoginRepository;
-    return SignUpNotifier(false);
+    final match = UserRepositoryImpl().getRepoProvider(ref) as UserRepository;
+    return SignUpNotifier(false, GetSignUpUseCase(match));
   }
 
   double getToggleItemWidth(BuildContext context, int itemCnt) {

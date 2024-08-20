@@ -17,8 +17,10 @@ class AuthService with ChangeNotifier {
     final userResult = await SharedPreferencesKey.user.get<Map>();
     if ((isAuto != null && isAuto) && userResult != null) {
       user.value = UserModel.fromJson(userResult as Map<String, dynamic>);
+      AppService.instance.isLogin = true;
     } else {
       user.value = null;
+      AppService.instance.isLogin = false;
     }
   }
 
@@ -34,5 +36,6 @@ class AuthService with ChangeNotifier {
     AppService.instance.isLogin = false;
 
     user.value = null;
+    AppService.instance.isLogin = false;
   }
 }

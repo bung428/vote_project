@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 enum StoreCollection {
   user('user'),
+  votes('votes'),
   ;
 
   final String path;

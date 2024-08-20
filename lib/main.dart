@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vote_project/firebase_options.dart';
 import 'package:vote_project/route/router.dart';
-import 'package:vote_project/service/app_service.dart';
 import 'package:vote_project/service/auth_service.dart';
 
 void main() async {
@@ -14,7 +13,7 @@ void main() async {
   );
 
   await AuthService.instance.init();
-  AppService.instance.init();
+  // AppService.instance.init();
 
   runApp(const ProviderScope(child: VoteApp()));
 }

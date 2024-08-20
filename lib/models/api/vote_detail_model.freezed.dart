@@ -20,7 +20,7 @@ VoteDetailModel _$VoteDetailModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VoteDetailModel {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   int get answerCnt => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $VoteDetailModelCopyWith<$Res> {
       _$VoteDetailModelCopyWithImpl<$Res, VoteDetailModel>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String content,
       String image,
       int answerCnt,
@@ -71,7 +71,7 @@ class _$VoteDetailModelCopyWithImpl<$Res, $Val extends VoteDetailModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -109,7 +109,7 @@ abstract class _$$VoteDetailModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String content,
       String image,
       int answerCnt,
@@ -140,7 +140,7 @@ class __$$VoteDetailModelImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ class _$VoteDetailModelImpl implements _VoteDetailModel {
       _$$VoteDetailModelImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String content;
   @override
@@ -226,7 +226,7 @@ class _$VoteDetailModelImpl implements _VoteDetailModel {
 
 abstract class _VoteDetailModel implements VoteDetailModel {
   factory _VoteDetailModel(
-      {required final String id,
+      {required final int id,
       required final String content,
       required final String image,
       required final int answerCnt,
@@ -236,7 +236,7 @@ abstract class _VoteDetailModel implements VoteDetailModel {
       _$VoteDetailModelImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get content;
   @override

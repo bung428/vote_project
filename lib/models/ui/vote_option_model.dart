@@ -1,5 +1,5 @@
 class VoteOptionModel {
-  final String id;
+  final int id;
   final String image;
   final String content;
   final int percent;

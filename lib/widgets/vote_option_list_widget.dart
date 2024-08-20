@@ -6,7 +6,7 @@ import 'package:vote_project/models/ui/vote_option_model.dart';
 import 'package:vote_project/widgets/gradient_linear_progress_indicator.dart';
 
 class VoteOptionListWidget extends StatelessWidget {
-  final String answerOptionId;
+  final int? answerOptionId;
   final bool isDetail;
   final List<VoteOptionModel> list;
 
