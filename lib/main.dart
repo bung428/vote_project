@@ -1,8 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:vote_project/firebase_options.dart';
 import 'package:vote_project/route/router.dart';
+import 'package:vote_project/service/app_service.dart';
+import 'package:vote_project/service/auth_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  await AuthService.instance.init();
+  AppService.instance.init();
+
   runApp(const ProviderScope(child: VoteApp()));
 }
 
@@ -73,4 +86,204 @@ extension TextStyleByTheme on ThemeData {
   Color get tertiaryTextColor => colorScheme.onTertiary;
 
   Color get errorTextColor => colorScheme.onError;
+}
+
+extension AppTextStyle on Color {
+  TextStyle? thin(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w100,
+    );
+  }
+
+  TextStyle? extraLight(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w200,
+    );
+  }
+
+  TextStyle? light(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w300,
+    );
+  }
+
+  TextStyle? regular(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.normal,
+    );
+  }
+
+  TextStyle? medium(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w500,
+    );
+  }
+
+  TextStyle? semiBold(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w600,
+    );
+  }
+
+  TextStyle? bold(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  TextStyle? extraBold(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w800,
+    );
+  }
+
+  TextStyle? black(
+      double size, {
+        double? height,
+        FontStyle? fontStyle,
+        TextDecoration? decoration,
+        Color? decorationColor,
+        TextDecorationStyle? decorationStyle,
+        double? decorationThickness,
+      }) {
+    return TextStyle(
+      color: this,
+      height: height != null ? height / size : null,
+      fontSize: size,
+      fontStyle: fontStyle,
+      decoration: decoration,
+      decorationColor: decorationColor,
+      decorationStyle: decorationStyle,
+      decorationThickness: decorationThickness,
+      fontWeight: FontWeight.w900,
+    );
+  }
 }

@@ -4,7 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_repository.dart';
 import 'package:vote_project/domain/repository/votes_repository.dart';
-import 'package:vote_project/models/api/vote_detail_model.dart';
 import 'package:vote_project/models/api/vote_model.dart';
 
 class VotesRepositoryImpl extends RiverRepository implements VotesRepository {

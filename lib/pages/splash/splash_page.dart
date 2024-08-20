@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:vote_project/route/routes.dart';
+import 'package:vote_project/service/app_service.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -19,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> showSplash() async {
     await Future.delayed(const Duration(seconds: 1));
     if (mounted) {
-      context.go(Routes.main.name);
+      context.pushReplacement(Routes.main.name);
     }
   }
 

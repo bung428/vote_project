@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "591150446814",
+    "project_id": "voteproject-5152a",
+    "storage_bucket": "voteproject-5152a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591150446814:android:2db203df7331ab4e336a4f",
+        "android_client_info": {
+          "package_name": "com.goo.vote_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjaaziOAOAQyX-ib9DlwVz1FWI9dYB1oQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

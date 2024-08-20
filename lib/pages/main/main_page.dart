@@ -18,7 +18,10 @@ class MainPage extends RiverProvider<MainNotifier, List<VoteCardModel>?> {
   @override
   Widget build(BuildContext context, provider, MainNotifier notifier) {
     return Scaffold(
-      appBar: AppBar(title: Text('로고'),),
+      appBar: AppBar(
+        title: const Text('로고'),
+        automaticallyImplyLeading: false,
+      ),
       body: SafeArea(
         child: provider == null ? const SizedBox() : ListView.builder(
           padding: const EdgeInsetsApp(horizontal: 16, vertical: 12),
@@ -27,6 +30,9 @@ class MainPage extends RiverProvider<MainNotifier, List<VoteCardModel>?> {
             model: provider[index],
             detailIdCallback: (id, optionId) =>
                 context.go('${Routes.detail.name}?id=$id&optionId=$optionId'),
+            likeCallback: (value) {
+
+            },
           )
         ),
       ),
