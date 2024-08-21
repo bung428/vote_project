@@ -32,6 +32,7 @@ class AuthService with ChangeNotifier {
     user.value = model;
     SharedPreferencesKey.user.set(model.toJson());
     AppService.instance.isLogin = user.value != null;
+    notifyListeners();
   }
 
   void logOut() {

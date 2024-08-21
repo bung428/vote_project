@@ -81,7 +81,15 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
           return e.copyWith(answerOptionId: optionId);
         }
         return e;
-      }).toList() ?? [VoteEntryModel(uid: user.uid, answerOptionId: optionId)];
+      }).toList();
+      if (oldOptionId == null) {
+        if (updatedEntries == null) {
+          updatedEntries = [VoteEntryModel(uid: user.uid, answerOptionId: optionId)];
+        } else {
+          updatedEntries.add(
+              VoteEntryModel(uid: user.uid, answerOptionId: optionId));
+        }
+      }
 
       var answerCnt = data.answerCnt;
       final oldOptions = data.options.firstWhereOrNull((e) => e.id == oldOptionId);
@@ -119,7 +127,7 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
           .update({
         'answerCnt': answerCnt,
         'options': updatedOptions.map((e) => e.toJson()).toList(),
-        'voteEntries': updatedEntries.map((e) => e.toJson()).toList(),
+        'voteEntries': updatedEntries?.map((e) => e.toJson()).toList(),
       });
       return true;
     } catch (error) {
