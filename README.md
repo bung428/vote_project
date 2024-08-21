@@ -1,6 +1,10 @@
 # Vote project
 - 111 percent task project 
 
+## Framework Version
+- Flutter 3.22.3
+- Dart 3.4.4
+
 ## Project directory structure
 .
 ├── data
@@ -96,7 +100,7 @@
 └── vote_option_list_widget.dart
 
 
-### Architecture
+## Architecture
 - page
 - notifier
 - domain
@@ -104,7 +108,7 @@
   - repository
 - data
 
-#### Etc
+## Etc
 1. Using the Firebase Firestore as a server
     - user
     - votes
