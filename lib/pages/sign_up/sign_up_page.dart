@@ -11,14 +11,14 @@ import 'package:vote_project/main.dart';
 import 'package:vote_project/pages/sign_up/sign_up_notifier.dart';
 import 'package:vote_project/widgets/app_button_widget.dart';
 
-class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
+class SignUpPage extends RiverProvider<SignUpNotifier, SignUpViewModel> {
   const SignUpPage({super.key});
 
   @override
   bool outsideUnFocus() => true;
 
   @override
-  Widget build(BuildContext context, bool provider, SignUpNotifier notifier) {
+  Widget build(BuildContext context, provider, SignUpNotifier notifier) {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: const Text('회원가입'),),
@@ -110,7 +110,7 @@ class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
               ),
               const SizedBox(height: 16,),
               ToggleButtons(
-                isSelected: notifier.genderSelected,
+                isSelected: provider.genderSelected,
                 onPressed: notifier.setGender,
                 borderRadius: BorderRadius.circular(8),
                 fillColor: Colors.white,
@@ -133,7 +133,7 @@ class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
               ),
               const SizedBox(height: 24,),
               AppButton(
-                onTap: provider ? () async {
+                onTap: provider.enable ? () async {
                   await notifier.signUp();
                   if (!context.mounted) return;
 
@@ -152,7 +152,7 @@ class SignUpPage extends RiverProvider<SignUpNotifier, bool> {
   @override
   SignUpNotifier createProvider(WidgetRef ref) {
     final match = UserRepositoryImpl().getRepoProvider(ref) as UserRepository;
-    return SignUpNotifier(false, GetSignUpUseCase(match));
+    return SignUpNotifier(SignUpViewModel(genderSelected: [true, false]), GetSignUpUseCase(match));
   }
 
   double getToggleItemWidth(BuildContext context, int itemCnt) {

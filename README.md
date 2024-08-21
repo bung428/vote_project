@@ -1,9 +1,20 @@
 # Vote project
-- 111 percent task project 
+- 111 percent task project
 
 ## Framework Version
 - Flutter 3.22.3
 - Dart 3.4.4
+
+## GitHub
+- https://github.com/bung428/vote_project
+
+## Build
+- flutter clean
+- flutter pub get
+- flutter run
+
+## Test Device
+- Galaxy S8, S9, S21 Ultra
 
 ## Project directory structure
 .
@@ -104,19 +115,30 @@
 - page
 - notifier
 - domain
-  - use-case
-  - repository
+    - use-case
+    - repository
 - data
 
 ## Etc
 1. Using the Firebase Firestore as a server
     - user
     - votes
-      - comments
+        - comments
 2. Log in, log out, add membership
 3. Add voting creation and deletion (floating button, pop-up menu button)
 4. Add comment function && comments in the comments
 5. Added 'Like' function
 6. Add material3 theme
 
-
+## Things to Improve
+1. comment page
+    - In the comments, a member profile picture
+    - If you saw the user information in the comments
+2. detail page
+    - If I added more features other than voting and showing results
+3. main page
+    - If there were other plans for the menu button function on the ballot
+- etc)
+- To add a time feature to a vote
+- Do more performance and reliability tests
+- Branch for configuration settings for testing

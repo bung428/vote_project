@@ -79,32 +79,32 @@ class CommentNotifier extends RiverNotifier<CommentViewModel> with AppStreamSubs
     streamSubscription(
       stream: commentsUseCase(voteId),
       onData: (_) async {
-          final docs = _.docs;
-          if (docs.isEmpty) return;
+        final docs = _.docs;
+        if (docs.isEmpty) return;
 
-          List comments = docs.first.data()['comments'];
-          final commentsData = comments.map((e) => CommentModel.fromJson(e)).toList();
-          final uids = commentsData.map((comment) => comment.uid).toSet().toList();
-          final userSnapshots = await FirestoreService
-              .instance
-              .collection(StoreCollection.user)
-              .where('uid', whereIn: uids)
-              .get();
+        List comments = docs.first.data()['comments'];
+        final commentsData = comments.map((e) => CommentModel.fromJson(e)).toList();
+        final uids = commentsData.map((comment) => comment.uid).toSet().toList();
+        final userSnapshots = await FirestoreService
+            .instance
+            .collection(StoreCollection.user)
+            .where('uid', whereIn: uids)
+            .get();
 
-          cICommentControllers = commentsData
-              .map((e) => TextEditingController()..addListener(_updateCICEnable))
-              .toList();
+        cICommentControllers = commentsData
+            .map((e) => TextEditingController()..addListener(_updateCICEnable))
+            .toList();
 
-          if (mounted) {
-            state = state.copyWith(
-                users: userSnapshots.docs.map((e) => UserModel.fromJson(e.data()))
-                    .toList(),
-                isClickCIC: commentsData.map((e) => false).toList(),
-                cICEnable: commentsData.map((e) => false).toList(),
-                comments: commentsData
-            );
-          }
-        },
+        if (mounted) {
+          state = state.copyWith(
+              users: userSnapshots.docs.map((e) => UserModel.fromJson(e.data()))
+                  .toList(),
+              isClickCIC: commentsData.map((e) => false).toList(),
+              cICEnable: commentsData.map((e) => false).toList(),
+              comments: commentsData
+          );
+        }
+      },
     );
   }
 
@@ -124,7 +124,7 @@ class CommentNotifier extends RiverNotifier<CommentViewModel> with AppStreamSubs
 
         if (mounted) {
           state = state.copyWith(
-              commentInComments: data.isEmpty ? null : data,
+            commentInComments: data.isEmpty ? null : data,
           );
         }
       },
@@ -164,18 +164,18 @@ class CommentNotifier extends RiverNotifier<CommentViewModel> with AppStreamSubs
     if (AuthService.instance.user.value == null) return;
 
     final model = CommentModel(
-      uid: AuthService.instance.user.value!.uid,
-      content: commentController.text,
-      updatedAt: DateTime.now()
+        uid: AuthService.instance.user.value!.uid,
+        content: commentController.text,
+        updatedAt: DateTime.now()
     );
     streamSubscription(
-      stream: Stream.fromFuture(commentsUseCase.addComment(voteId, model)),
-      onData: (_) {
-        if (_) {
-          commentController.text = '';
-          state = state.copyWith(enable: false);
+        stream: Stream.fromFuture(commentsUseCase.addComment(voteId, model)),
+        onData: (_) {
+          if (_) {
+            commentController.text = '';
+            state = state.copyWith(enable: false);
+          }
         }
-      }
     );
   }
 

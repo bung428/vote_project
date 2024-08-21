@@ -6,7 +6,22 @@ import 'package:vote_project/enums/gender.dart';
 import 'package:vote_project/models/api/user_model.dart';
 import 'package:vote_project/service/firestore_service.dart';
 
-class SignUpNotifier extends RiverNotifier<bool> {
+class SignUpViewModel {
+  List<bool> genderSelected;
+  bool enable;
+
+  SignUpViewModel({required this.genderSelected, this.enable = false});
+
+  SignUpViewModel copyWith ({
+    List<bool>? genderSelected,
+    bool? enable,
+  }) => SignUpViewModel(
+    genderSelected: genderSelected ?? this.genderSelected,
+    enable: enable ?? this.enable,
+  );
+}
+
+class SignUpNotifier extends RiverNotifier<SignUpViewModel> {
   final GetSignUpUseCase signUpUseCase;
 
   SignUpNotifier(super.state, this.signUpUseCase);
@@ -48,12 +63,12 @@ class SignUpNotifier extends RiverNotifier<bool> {
     final selected = genderSelected.indexWhere((e) => e);
     final gender = Gender.values.firstWhereOrNull((e) => e.index == selected);
 
-    state = idController.text.isNotEmpty &&
+    state = state.copyWith(enable: idController.text.isNotEmpty &&
         pwdController.text.isNotEmpty &&
         rePwdController.text.isNotEmpty &&
         pwdController.text.trim() == rePwdController.text.trim() &&
         gender != null
-    ;
+    );
   }
 
   void setGender(int index) {
@@ -64,6 +79,7 @@ class SignUpNotifier extends RiverNotifier<bool> {
         genderSelected[idx] = false;
       }
     }
+    state = state.copyWith(genderSelected: genderSelected);
     _updateEnable();
   }
 
