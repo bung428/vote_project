@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_repository.dart';
 import 'package:vote_project/domain/repository/comment_repository.dart';
+import 'package:vote_project/models/api/comment_in_model.dart';
 import 'package:vote_project/models/api/comment_model.dart';
 import 'package:vote_project/service/firestore_service.dart';
 
@@ -16,6 +17,16 @@ class CommentRepositoryImpl extends RiverRepository implements CommentRepository
         .collection(StoreCollection.votes)
         .doc(voteId)
         .collection(StoreCollection.comments.path)
+        .snapshots();
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchCICCommentStream(String voteId) {
+    return FirestoreService
+        .instance
+        .collection(StoreCollection.votes)
+        .doc(voteId)
+        .collection(StoreCollection.commentInComments.path)
         .snapshots();
   }
 
@@ -60,6 +71,50 @@ class CommentRepositoryImpl extends RiverRepository implements CommentRepository
       return true;
     } catch(_) {
       debugPrint('KBG addComment : $_');
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> addCIComment(String voteId, int commentIdx, CommentInModel model) async {
+    try {
+      final docSnapshot = await FirestoreService
+          .instance
+          .collection(StoreCollection.votes)
+          .doc(voteId)
+          .collection(StoreCollection.commentInComments.path)
+          .doc('$commentIdx')
+          .get();
+
+      if (docSnapshot.exists) {
+        List current = docSnapshot.data()!['comments'];
+        current.add(model.toJson());
+        await docSnapshot.reference.update({
+          'comments': current
+        });
+      } else {
+        await FirestoreService
+            .instance
+            .collection(StoreCollection.votes)
+            .doc(voteId)
+            .collection(StoreCollection.commentInComments.path)
+            .doc('$commentIdx')
+            .set({'comments': [model.toJson()]});
+      }
+
+      final voteDoc = FirestoreService
+          .instance
+          .collection(StoreCollection.votes)
+          .doc(voteId);
+      final snapshot = await voteDoc.get();
+      if (snapshot.data() == null) return false;
+
+      int cnt = snapshot.data()!['commentCnt'];
+      voteDoc.update({'commentCnt': cnt + 1});
+
+      return true;
+    } catch(_) {
+      debugPrint('KBG addCIComment : $_');
       return false;
     }
   }
