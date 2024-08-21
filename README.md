@@ -115,7 +115,7 @@
       - comments
 2. Log in, log out, add membership
 3. Add voting creation and deletion (floating button, pop-up menu button)
-4. Add comment function
+4. Add comment function && comments in the comments
 5. Added 'Like' function
 6. Add material3 theme
 
