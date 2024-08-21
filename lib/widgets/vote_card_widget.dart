@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod_koo/edge_insets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:vote_project/main.dart';
 import 'package:vote_project/models/ui/vote_card_footer_model.dart';
 import 'package:vote_project/models/ui/vote_card_model.dart';
 import 'package:vote_project/route/routes.dart';
@@ -31,6 +32,7 @@ class VoteCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Card(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12)
@@ -43,12 +45,13 @@ class VoteCardWidget extends StatelessWidget {
         ),
         child: Container(
           width: double.infinity,
+          color: theme.colorScheme.surface,
           padding: const EdgeInsetsApp(all: 12),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(model.content),
+              Text(model.content, style: theme.textColor.semiBold(18)),
               const Divider(thickness: 1,),
               const SizedBox(height: 12,),
               VoteOptionListWidget(model.options, model.answerOptionId),
@@ -83,10 +86,11 @@ class _CardFooterWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('${model.answerCnt} 참여'),
+        Text('${model.answerCnt} 참여',),
         Row(
           children: [
             TouchWell(
+              bgColor: theme.colorScheme.surface,
               shape: const CircleBorder(),
               onTap: () async {
                 if (!AppService.instance.isLogin) {
@@ -114,6 +118,7 @@ class _CardFooterWidget extends StatelessWidget {
             const SizedBox(width: 8,),
             TouchWell(
               onTap: commentCallback,
+              bgColor: theme.colorScheme.surface,
               shape: const CircleBorder(),
               child: const Padding(
                 padding: EdgeInsetsApp(start: 6, vertical: 6),
@@ -134,11 +139,11 @@ class _CardFooterWidget extends StatelessWidget {
                   menuCallback.call();
                 }
               },
-              itemBuilder: (BuildContext bc) => [
+              itemBuilder: (context) => [
                 if (canDelete)
                   const PopupMenuItem(
                     value: 'delete',
-                    child: Text('투표 삭제'),
+                    child: Center(child: Text('투표 삭제')),
                   ),
               ],
             )

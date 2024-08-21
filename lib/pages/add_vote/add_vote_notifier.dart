@@ -55,6 +55,7 @@ class AddVoteNotifier extends RiverNotifier<AddVoteViewModel> with AppStreamSubs
   @override
   void dispose() {
     titleController.removeListener(_updateEnable);
+    titleController.dispose();
     super.dispose();
   }
 

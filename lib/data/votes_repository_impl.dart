@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod_koo/river_pod/river_repository.dart';
 import 'package:vote_project/domain/repository/votes_repository.dart';
 import 'package:vote_project/enums/gender.dart';
@@ -24,7 +26,7 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
       if (query.docs.isEmpty) return null;
       return query.docs.map((e) => VoteModel.fromJson(e.data())).toList();
     } catch (_) {
-      print('KBG getVotes error : $_');
+      debugPrint('KBG getVotes error : $_');
       return null;
     }
   }
@@ -38,7 +40,7 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
       final selected = votesResult.firstWhereOrNull((e) => e.id == id);
       return Future.value(selected);
     } catch (_) {
-      print('KBG getVoteById error : $_');
+      debugPrint('KBG getVoteById error : $_');
       return null;
     }
   }
@@ -53,7 +55,7 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
           .doc(id)
           .update(model.toJson());
     } catch (error) {
-      print('KBG updateVoteLikeState error: $error');
+      debugPrint('KBG updateVoteLikeState error: $error');
     }
   }
 
@@ -121,7 +123,7 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
       });
       return true;
     } catch (error) {
-      print('KBG updateOption error: $error');
+      debugPrint('KBG updateOption error: $error');
       return false;
     }
   }
@@ -135,7 +137,7 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
           .set(model.toJson());
       return true;
     } catch (error) {
-      print('KBG addVote error: $error');
+      debugPrint('KBG addVote error: $error');
       return false;
     }
   }
@@ -150,8 +152,17 @@ class VotesRepositoryImpl extends RiverRepository implements VotesRepository {
 
       return true;
     } catch (error) {
-      print('KBG addVote error: $error');
+      debugPrint('KBG addVote error: $error');
       return false;
     }
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchVotesStream() {
+    return FirestoreService
+        .instance
+        .collection(StoreCollection.votes)
+        .orderBy('createdAt', descending: true)
+        .snapshots();
   }
 }

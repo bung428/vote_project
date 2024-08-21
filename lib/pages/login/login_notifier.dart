@@ -45,6 +45,8 @@ class LoginNotifier extends RiverNotifier<LoginViewModel> with AppStreamSubscrip
   void dispose() {
     idController.removeListener(_updateEnable);
     pwdController.removeListener(_updateEnable);
+    idController.dispose();
+    pwdController.dispose();
     super.dispose();
   }
 

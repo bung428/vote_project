@@ -9,7 +9,6 @@ import 'package:vote_project/models/api/vote_like_model.dart';
 import 'package:vote_project/models/api/vote_model.dart';
 import 'package:vote_project/models/ui/vote_card_model.dart';
 import 'package:vote_project/service/auth_service.dart';
-import 'package:vote_project/service/firestore_service.dart';
 
 class MainViewModel {
   List<VoteCardModel>? voteCards;
@@ -44,11 +43,7 @@ class MainNotifier extends RiverNotifier<MainViewModel>
     );
 
     streamSubscription(
-      stream: FirestoreService
-          .instance
-          .collection(StoreCollection.votes)
-          .orderBy('createdAt', descending: true)
-          .snapshots(),
+      stream: voteUseCase.fetchVotesStream(),
       onData: (query) {
         if (query.docs.isEmpty) return;
 

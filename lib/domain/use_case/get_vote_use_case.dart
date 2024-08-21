@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:vote_project/domain/repository/votes_repository.dart';
 import 'package:vote_project/models/api/vote_model.dart';
 
@@ -16,5 +17,9 @@ class GetVoteUseCase {
 
   Future<bool> deleteVote(String id) async {
     return await repository.deleteVote(id);
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchVotesStream() {
+    return repository.fetchVotesStream();
   }
 }

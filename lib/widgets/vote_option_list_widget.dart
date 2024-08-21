@@ -144,9 +144,13 @@ class _OptionWidget extends StatelessWidget {
                               ),
                               const SizedBox(width: 8,)
                             ],
-                            Text('${model.percent}%', style: TextStyle(
-                              color: isVoted ? theme.textColor : theme.disabledColor.withOpacity(0.2)
-                            ),),
+                            Text(
+                              '${model.percent}%',
+                              style: isVoted
+                                  ? theme.textColor.medium(14)
+                                  : theme.disabledColor.semiBold(14)?.copyWith(
+                                      color: theme.disabledColor.withOpacity(0.2)
+                              )),
                           ],
                         ),
                       ),

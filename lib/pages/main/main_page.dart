@@ -22,12 +22,6 @@ class MainPage extends RiverProvider<MainNotifier, MainViewModel> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('로고'),
-        actions: [
-          IconButton(
-            onPressed: AuthService.instance.logOut,
-            icon: const Icon(Icons.more_horiz)
-          )
-        ],
       ),
       body: SafeArea(
         child: provider.voteCards == null ? const SizedBox() : ListView.builder(

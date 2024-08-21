@@ -29,6 +29,10 @@ class SignUpNotifier extends RiverNotifier<bool> {
     idController.removeListener(_updateEnable);
     pwdController.removeListener(_updateEnable);
     rePwdController.removeListener(_updateEnable);
+
+    idController.dispose();
+    pwdController.dispose();
+    rePwdController.dispose();
     super.dispose();
   }
 

@@ -9,6 +9,7 @@ import 'package:vote_project/data/votes_repository_impl.dart';
 import 'package:vote_project/domain/repository/votes_repository.dart';
 import 'package:vote_project/domain/use_case/get_vote_detail_use_case.dart';
 import 'package:vote_project/enums/gender.dart';
+import 'package:vote_project/main.dart';
 import 'package:vote_project/models/ui/vote_detail_data_model.dart';
 import 'package:vote_project/pages/detail/vote_detail_notifier.dart';
 import 'package:vote_project/route/routes.dart';
@@ -42,7 +43,7 @@ class VoteDetailPage extends RiverProvider<VoteDetailNotifier, VoteDetailDataMod
             children: [
               Padding(
                 padding: const EdgeInsetsApp(horizontal: 16, vertical: 12),
-                child: Text(provider.title),
+                child: Text(provider.title, style: theme.textColor.semiBold(18),),
               ),
               const Divider(thickness: 1,),
               const SizedBox(height: 12,),
